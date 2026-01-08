@@ -7,7 +7,7 @@ const Home = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-            {/* hero section */}
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                 <div className="text-center">
                     <h1 className="text-5xl font-bold text-gray-900 mb-6">
@@ -44,7 +44,7 @@ const Home = () => {
                     )}
                 </div>
 
-                {/* features section */}
+
                 <div className="mt-24 grid md:grid-cols-3 gap-8">
                     <div className="bg-white p-8 rounded-xl shadow-lg text-center">
                         <div className="inline-block p-4 bg-blue-100 rounded-full mb-4">
@@ -77,7 +77,7 @@ const Home = () => {
                     </div>
                 </div>
 
-                {/* stats section */}
+
                 <div className="mt-24 bg-white rounded-xl shadow-lg p-8">
                     <div className="grid md:grid-cols-3 gap-8 text-center">
                         <div>
