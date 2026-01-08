@@ -11,13 +11,20 @@ const api = axios.create({
 });
 
 // Add token to requests automatically
-api.interceptors.request.use((config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+api.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('token');
+        console.log('API Request to:', config.url);
+        console.log('Token found:', !!token);
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
     }
-    return config;
-});
+);
 
 // Auth API calls
 export const authAPI = {

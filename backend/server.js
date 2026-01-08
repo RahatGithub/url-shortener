@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 require('dotenv').config();
 
 // Import database connection
@@ -14,9 +13,34 @@ const { redirectToUrl } = require('./controllers/urlController');
 
 const app = express();
 
-// Middleware
-app.use(cors());
+// Manual CORS Middleware - MUST BE FIRST
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    
+    // Handle preflight request
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+    
+    next();
+});
+
+// Body parser middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Debug middleware - log all requests
+app.use((req, res, next) => {
+    console.log('=== REQUEST ===');
+    console.log('Method:', req.method);
+    console.log('Path:', req.path);
+    console.log('Authorization Header:', req.headers.authorization);
+    console.log('================');
+    next();
+});
 
 // Routes
 app.use('/api/auth', authRoutes);

@@ -13,22 +13,27 @@ export const AuthProvider = ({ children }) => {
 
     // Check if user is logged in on app load
     useEffect(() => {
+        const checkAuth = async () => {
+            const token = localStorage.getItem('token');
+            console.log('Checking auth, token exists:', !!token);
+            
+            if (token) {
+                try {
+                    console.log('Making /me request...');
+                    const response = await authAPI.getMe();
+                    console.log('User data:', response.data);
+                    setUser(response.data.user);
+                } catch (error) {
+                    console.error('Auth check failed:', error);
+                    localStorage.removeItem('token');
+                    setUser(null);
+                }
+            }
+            setLoading(false);
+        };
+
         checkAuth();
     }, []);
-
-    const checkAuth = async () => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            try {
-                const response = await authAPI.getMe();
-                setUser(response.data.user);
-            } catch (error) {
-                localStorage.removeItem('token');
-                setUser(null);
-            }
-        }
-        setLoading(false);
-    };
 
     const login = async (email, password) => {
         const response = await authAPI.login(email, password);
