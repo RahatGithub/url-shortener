@@ -10,7 +10,7 @@ router.post('/register', register);
 // POST /api/auth/login
 router.post('/login', login);
 
-// GET /api/auth/me (Protected route)
+// GET /api/auth/me 
 router.get('/me', authMiddleware, getMe);
 
 module.exports = router;

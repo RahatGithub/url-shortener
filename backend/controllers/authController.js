@@ -3,45 +3,37 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-// Register new user
 const register = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // Validate input
         if (!email || !password) {
             return res.status(400).json({ message: 'Email and password are required.' });
         }
 
-        // Validate email format
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             return res.status(400).json({ message: 'Invalid email format.' });
         }
 
-        // Validate password length
         if (password.length < 6) {
             return res.status(400).json({ message: 'Password must be at least 6 characters.' });
         }
 
-        // Check if user already exists
         const [existingUsers] = await db.query('SELECT id FROM users WHERE email = ?', [email]);
         
         if (existingUsers.length > 0) {
             return res.status(400).json({ message: 'User already exists with this email.' });
         }
 
-        // Hash password
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        // Insert new user
         const [result] = await db.query(
             'INSERT INTO users (email, password) VALUES (?, ?)',
             [email, hashedPassword]
         );
 
-        // Generate JWT token
         const token = jwt.sign(
             { id: result.insertId, email },
             process.env.JWT_SECRET,
@@ -63,17 +55,15 @@ const register = async (req, res) => {
     }
 };
 
-// Login user
+
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // Validate input
         if (!email || !password) {
             return res.status(400).json({ message: 'Email and password are required.' });
         }
 
-        // Check if user exists
         const [users] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
 
         if (users.length === 0) {
@@ -82,14 +72,12 @@ const login = async (req, res) => {
 
         const user = users[0];
 
-        // Compare password
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid email or password.' });
         }
 
-        // Generate JWT token
         const token = jwt.sign(
             { id: user.id, email: user.email },
             process.env.JWT_SECRET,
@@ -111,7 +99,7 @@ const login = async (req, res) => {
     }
 };
 
-// Get current user
+
 const getMe = async (req, res) => {
     try {
         const [users] = await db.query(

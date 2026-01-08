@@ -8,19 +8,18 @@ const {
 } = require('../controllers/urlController');
 const authMiddleware = require('../middleware/authMiddleware');
 
-// All routes below require authentication
 router.use(authMiddleware);
 
-// POST /api/urls - Create short URL
+// POST /api/urls 
 router.post('/', createShortUrl);
 
-// GET /api/urls - Get all user's URLs
+// GET /api/urls 
 router.get('/', getUserUrls);
 
-// GET /api/urls/:id - Get single URL stats
+// GET /api/urls/:id 
 router.get('/:id', getUrlStats);
 
-// DELETE /api/urls/:id - Delete a URL
+// DELETE /api/urls/:id 
 router.delete('/:id', deleteUrl);
 
 module.exports = router;
