@@ -22,16 +22,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.use((req, res, next) => {
-    console.log('=== REQUEST ===');
-    console.log('Method:', req.method);
-    console.log('Path:', req.path);
-    console.log('Authorization Header:', req.headers.authorization);
-    console.log('================');
-    next();
-});
-
-
 app.use('/api/auth', authRoutes);
 app.use('/api/urls', urlRoutes);
 
@@ -45,5 +35,5 @@ app.get('/:shortCode', redirectToUrl);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(` Server running on http://localhost:${PORT}`);
 });

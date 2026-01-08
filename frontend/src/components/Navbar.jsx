@@ -15,7 +15,7 @@ const Navbar = () => {
         <nav className="bg-white shadow-md">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
-                    {/* Logo */}
+                    
                     <Link to="/" className="flex items-center space-x-2">
                         <FiLink className="text-2xl text-blue-600" />
                         <span className="text-xl font-bold text-gray-800">
@@ -23,7 +23,6 @@ const Navbar = () => {
                         </span>
                     </Link>
 
-                    {/* Navigation Links */}
                     <div className="flex items-center space-x-4">
                         {isAuthenticated ? (
                             <>

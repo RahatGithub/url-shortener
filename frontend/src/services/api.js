@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:5000/api';
 
-// Create axios instance
+// creating axios instance
 const api = axios.create({
     baseURL: API_URL,
     headers: {
@@ -10,23 +10,18 @@ const api = axios.create({
     }
 });
 
-// Add token to requests automatically
-api.interceptors.request.use(
-    (config) => {
-        const token = localStorage.getItem('token');
-        console.log('API Request to:', config.url);
-        console.log('Token found:', !!token);
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-    },
-    (error) => {
-        return Promise.reject(error);
-    }
-);
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem('token');
 
-// Auth API calls
+    if (token) {
+        config.headers = config.headers || {};
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+});
+
+// auth API calls
 export const authAPI = {
     register: (email, password) => api.post('/auth/register', { email, password }),
     login: (email, password) => api.post('/auth/login', { email, password }),

@@ -1,5 +1,4 @@
- 
-const mysql = require('mysql2');
+ const mysql = require('mysql2');
 require('dotenv').config();
 
 const pool = mysql.createPool({
@@ -11,10 +10,9 @@ const pool = mysql.createPool({
     connectionLimit: 10
 });
 
-// convert to promise-based API
 const db = pool.promise();
 
-// Test connection
+
 db.getConnection()
     .then(connection => {
         console.log('MySQL Connected Successfully!');

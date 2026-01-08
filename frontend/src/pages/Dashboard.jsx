@@ -17,7 +17,7 @@ const Dashboard = () => {
 
     const { isAuthenticated } = useAuth();
 
-    // Fetch URLs on mount
+    // fetching URLs on mount
     useEffect(() => {
         if (isAuthenticated) {
             fetchUrls();
@@ -124,13 +124,12 @@ const Dashboard = () => {
     return (
         <div className="min-h-screen bg-gray-100 py-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Header */}
+
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
                     <p className="text-gray-600 mt-2">Manage your shortened URLs</p>
                 </div>
 
-                {/* Usage Stats */}
                 <div className="bg-white rounded-xl shadow-md p-6 mb-8">
                     <div className="flex items-center justify-between">
                         <div>
