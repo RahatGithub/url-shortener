@@ -1,6 +1,6 @@
 # 🚀 URL Shortener Project
 
-A full-stack URL shortening application with authentication, built with React (Vite + Tailwind) for the frontend and Node.js + Express + MySQL for the backend.
+A URL shortening application with authentication, built with React for the frontend and Node.js + Express + MySQL for the backend.
 
 ## 🌟 Features
 
@@ -29,11 +29,11 @@ A full-stack URL shortening application with authentication, built with React (V
 
 ### 🖥️ Frontend
 
--   React.js (v19.2.0)
+-   React.js
     
--   Vite.js
+-   Vite
     
--   Tailwind CSS
+-   Tailwind CSS (v4)
     
 -   React Hook Form
     
@@ -48,9 +48,9 @@ A full-stack URL shortening application with authentication, built with React (V
 
 ### ⚙️ Backend
 
--   Node.js (v20+)
+-   Node.js 
     
--   Express.js (v5.2.1)
+-   Express.js 
     
 -   MySQL2
     
@@ -203,14 +203,46 @@ For protected routes, include the JWT token in the `Authorization` header:
 ### 📊 Dashboard
 ![Dashboard](screenshots/dashboard.png)
 
-## 🚀 Improvements / Future Scope
+### 💡 Design Decisions
+
+- **Tech Stack Choice**  
+  - **React + Vite + Tailwind** for a fast, responsive, and modern frontend.  
+  - **Node.js + Express** for a lightweight, efficient backend capable of handling API requests easily.  
+  - **MySQL** chosen for structured, relational data storage, ideal for users and URLs.
+
+- **Authentication**  
+  - JWT-based authentication keeps the API stateless and secure.  
+  - Passwords are hashed with `bcryptjs` to protect user credentials.
+
+- **URL Shortening Logic**  
+  - `nanoid` is used to generate unique short IDs for URLs, avoiding collisions and ensuring compact links.
+
+- **Database Structure**  
+  - Separate `users` and `urls` tables for normalization and scalability.  
+  - Foreign key relationships ensure deleting a user automatically deletes all their URLs.
+
+- **Frontend Decisions**  
+  - Tailwind CSS enables rapid styling and responsive design without bloated CSS files.  
+  - React Hook Form simplifies form handling and validation.  
+  - Axios provides a clean, consistent interface for API requests.
+
+- **Scalability Considerations**  
+  - App structure allows easy integration of an ORM like Prisma or Sequelize in the future.  
+  - Modular routes and JWT-based authentication make it straightforward to add features like premium subscriptions or analytics.
+
+- **User Experience**  
+  - Dashboard shows key stats such as clicks and creation date for quick insights.  
+  - Dummy data via `seed.js` allows recruiters or testers to explore the app without manual account creation.
+
+
+## 🚀 Improvements 
 
 -   🔁 Use an ORM like Prisma or Sequelize instead of raw SQL for better scalability
     
 -   🧾 Introduce TypeScript for improved type safety
     
 -   💎 Implement a Premium subscription for unlimited URLs
-    
+
 
 ## ℹ️ Notes
 
