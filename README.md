@@ -1,6 +1,6 @@
 # 🚀 URL Shortener Project
 
-A URL shortening application with authentication, built with React for the frontend and Node.js + Express + MySQL for the backend.
+A full-stack URL shortening application with authentication, built with React (Vite + Tailwind) for the frontend and Node.js + Express + MySQL for the backend.
 
 ## 🌟 Features
 
@@ -71,21 +71,23 @@ A URL shortening application with authentication, built with React for the front
 
 ### 1️⃣ Clone the Repository
 
-`git clone <your-repo-url> cd <repo-folder>`
+`git clone https://github.com/RahatGithub/url-shortener.git` 
+
+**Go to the project folder:**
+
+`cd url-shortener`
 
 ### 2️⃣ Backend Setup
 
-Go to the backend folder:
+**Go to the backend folder:**
 
 `cd backend`
 
-Install dependencies:
+**Install dependencies:**
 
 `npm install`
 
-Create a `.env` file in the `backend` folder (you can use `.env.example` as a template):
-
-`PORT=5000 DB_HOST=localhost DB_USER=root DB_PASSWORD= DB_NAME=url_shortener JWT_SECRET=myultrasecretkey123456789 BASE_URL=http://localhost:5000`
+Create a `.env` file in the `backend` folder (you can use `.env.example` as a template)
 
 ### 🗄 Database Setup
 
@@ -98,7 +100,14 @@ You can create the database and tables using the provided `db_schema.sql` file.
 
 **Option 2: Using the terminal / command line**
 
-`# Open MySQL mysql -u root  # Create the database CREATE DATABASE url_shortener; EXIT;  # Import the schema mysql -u root url_shortener < db_schema.sql`
+Open MySQL:
+`mysql -u root` 
+
+Create the database:
+`CREATE DATABASE url_shortener; EXIT;` 
+
+Import the schema:
+`mysql -u root url_shortener < db_schema.sql`
 
 > ✅ After this, the database and tables will be ready, but no data will exist yet.
 
@@ -126,6 +135,10 @@ The backend should now be running at:
 `http://localhost:5000`
 
 ### 3️⃣ Frontend Setup
+
+Go back the project root folder (url-shortener):
+
+`cd ../`
 
 Go to the frontend folder:
 
@@ -190,7 +203,6 @@ For protected routes, include the JWT token in the `Authorization` header:
 ### 📊 Dashboard
 ![Dashboard](screenshots/dashboard.png)
 
-
 ## 🚀 Improvements / Future Scope
 
 -   🔁 Use an ORM like Prisma or Sequelize instead of raw SQL for better scalability
@@ -198,10 +210,6 @@ For protected routes, include the JWT token in the `Authorization` header:
 -   🧾 Introduce TypeScript for improved type safety
     
 -   💎 Implement a Premium subscription for unlimited URLs
-    
--   🛡 Enhance server-side validation and error handling
-    
--   ✅ Add unit and integration tests for both frontend and backend
     
 
 ## ℹ️ Notes
