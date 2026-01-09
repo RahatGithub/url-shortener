@@ -29,7 +29,7 @@ async function seed() {
         );
     }
 
-    console.log(`Seed complete! New user created: ${email}`);
+    console.log(`Seed complete! New user created. Email: ${email}, Password: 123456`);
     process.exit();
 }
 
