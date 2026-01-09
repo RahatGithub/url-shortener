@@ -25,7 +25,7 @@ async function seed() {
     for (let i = 1; i <= 98; i++) {
         await db.query(
             'INSERT INTO urls (user_id, original_url, short_code, created_at) VALUES (?, ?, ?, NOW())',
-            [userId, `https://example.com/dummy-data-for-testing/page-${i}`, Math.random().toString(36).substring(2, 8)]
+            [userId, `https://example.com/dummy-data-for-testing-url-shortener-project/john-doe-singing-a-random-song-that-nobody-has-ever-heard-of/page-${i}`, Math.random().toString(36).substring(2, 8)]
         );
     }
 
