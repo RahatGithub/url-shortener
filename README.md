@@ -115,7 +115,11 @@ Import the schema:
 
 To explore the application, populate the database with some dummy data using the `seed.js` script in the backend folder:
 
-`cd backend node seed.js`
+`cd backend` 
+
+Run the script:
+
+`node seed.js`
 
 -   Each time you run `seed.js`, a **new user** will be created with:
     
